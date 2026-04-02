@@ -1,6 +1,6 @@
 import React from "react";
 
-import Header from "./components/Header.jsx";
+import Header from "./Header.jsx";
 
 class Kelas extends React.Component {
   state = {
