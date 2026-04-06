@@ -4,6 +4,13 @@
  * @property {String} product.name
  */
 /**
+ * @typedef {Object} testimony
+ * @property {String} testimony.img
+ * @property {String} testimony.name
+ * @property {Number} testimony.rating
+ * @property {String} testimony.content
+ */
+/**
  * Form to add product
  * @param {Object} props
  * @param {import("react").Dispatch<import("react").SetStateAction<product[]>>} props.addProduct

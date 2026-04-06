@@ -4,7 +4,7 @@ import Nav from "../components/Nav";
 function RickMorty() {
   return (
     <main>
-      <Nav />
+      {/* <Nav /> */}
       <Header name={"Rick and Morty"} />
     </main>
   );

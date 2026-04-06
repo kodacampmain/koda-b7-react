@@ -46,7 +46,7 @@ function App() {
   }, [counter]);
   return (
     <main>
-      <Nav />
+      {/* <Nav /> */}
       <section>
         <Header name={"Koda"} />
         <p>Komponen Fungsi</p>

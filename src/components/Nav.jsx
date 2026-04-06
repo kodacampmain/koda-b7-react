@@ -10,20 +10,22 @@ function Nav() {
       <ul className="mx-auto flex gap-1">
         <li className="text-xl font-bold cursor-pointer hover:text-white select-none">
           <NavLink
-            to={"/"}
+            to={"/v1"}
             className={({ isActive }) => {
               return isActive ? "text-red-600" : "text-black hover:text-white";
             }}
+            end
           >
             Home
           </NavLink>
         </li>
         <li className="text-xl font-bold cursor-pointer hover:text-white select-none">
           <NavLink
-            to={"/rm"}
+            to={"/v1/rm"}
             className={({ isActive }) => {
               return isActive ? "text-red-600" : "text-black hover:text-white";
             }}
+            end
           >
             RickMorty
           </NavLink>

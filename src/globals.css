@@ -1,1 +1,52 @@
+/* @import url("https://fonts.googleapis.com/css2?family=My+Soul&display=swap"); */
+@font-face {
+  font-family: "My Soul";
+  src: url("./assets/fonts/MySoul-Regular.ttf") format("truetype");
+  font-display: swap;
+  font-weight: normal;
+  font-style: normal;
+}
 @import "tailwindcss";
+@theme {
+  --primary-theme: #a47251;
+  --secondary-theme: #dd9e59;
+  --tertiary-theme: #dcf0c3;
+
+  --color-primary: var(--primary-theme);
+  --color-secondary: var(--secondary-theme);
+  --color-tertiary: var(--tertiary-theme);
+  --font-soul: "My Soul", sans-serif, monospace;
+  /* --spacing-2: 9px; */
+  --breakpoint-koda1: 252px;
+  --breakpoint-koda2: 380px;
+}
+
+@layer base {
+  input[type="text"] {
+    @apply font-soul;
+  }
+}
+
+@layer components {
+  .card {
+    @apply border-2 border-black border-solid;
+  }
+  .btn {
+    @apply borderstd-black cursor-pointer select-none bg-white;
+
+    @variant hover {
+      /* hover:btn */
+      @apply border-white bg-black text-white;
+    }
+  }
+}
+
+@utility borderstd-* {
+  border: 2px solid --value(--color-*);
+}
+
+@custom-variant inside-input {
+  & input {
+    @slot;
+  }
+}

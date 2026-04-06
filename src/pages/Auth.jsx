@@ -36,7 +36,10 @@ function Auth() {
   return (
     <main className="h-screen bg-amber-300 flex items-center justify-center">
       <section className="w-4/6 bg-black/70 h-5/6 rounded p-2">
-        <form className="bg-white h-full rounded p-2 flex flex-col gap-2" onSubmit={submitHandler}>
+        <form
+          className="bg-white h-full rounded p-2 flex flex-col gap-2 inside-input:text-blue-600 inside-input:hover:borderstd-primary"
+          onSubmit={submitHandler}
+        >
           <div className="flex-1 flex justify-between items-center">
             <label htmlFor="email" className="font-bold text-xl">
               Email
