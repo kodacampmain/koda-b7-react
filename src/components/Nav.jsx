@@ -10,7 +10,7 @@ function Nav() {
       <ul className="mx-auto flex gap-1">
         <li className="text-xl font-bold cursor-pointer hover:text-white select-none">
           <NavLink
-            to={"/v1"}
+            to={"/"}
             className={({ isActive }) => {
               return isActive ? "text-red-600" : "text-black hover:text-white";
             }}
@@ -21,13 +21,13 @@ function Nav() {
         </li>
         <li className="text-xl font-bold cursor-pointer hover:text-white select-none">
           <NavLink
-            to={"/v1/rm"}
+            to={"/pokemon"}
             className={({ isActive }) => {
               return isActive ? "text-red-600" : "text-black hover:text-white";
             }}
             end
           >
-            RickMorty
+            Pokemon
           </NavLink>
         </li>
       </ul>
