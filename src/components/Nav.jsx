@@ -1,12 +1,16 @@
+import { useContext } from "react";
 import { NavLink } from "react-router";
 
+import themeContext from "../contexts/theme/context.js";
 /**
  * Navigation Component
  * @returns {JSX.Element}
  */
 function Nav() {
+  const themeCtx = useContext(themeContext);
+  // console.log(themeCtx);
   return (
-    <nav className="flex bg-orange-300">
+    <nav className={`flex ${themeCtx.theme === "light" ? "bg-orange-300" : "bg-orange-800"}`}>
       <ul className="mx-auto flex gap-1">
         <li className="text-xl font-bold cursor-pointer hover:text-white select-none">
           <NavLink
@@ -31,6 +35,9 @@ function Nav() {
           </NavLink>
         </li>
       </ul>
+      <button onClick={() => themeCtx.toggleTheme()} className="borderstd-black cursor-pointer p-1">
+        Change Theme
+      </button>
     </nav>
   );
 }

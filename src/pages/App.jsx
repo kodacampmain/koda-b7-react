@@ -1,13 +1,15 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router";
 
 import Kelas from "../components/Kelas.jsx";
 import Header from "../components/Header.jsx";
 // import Nav from "../components/Nav.jsx";
 import useLocalStorage from "../hooks/useLocalStorage.js";
+import themeCtx from "../contexts/theme/context.js";
 
 function App() {
   const navigate = useNavigate();
+  const { theme } = useContext(themeCtx);
   const [username, , removeUsername] = useLocalStorage("user", "");
   // const [isLoggedin, setIsLoggedIn] = useLocalStorage("login-status", false);
   const [counter, setCounter] = useState(0);
@@ -85,7 +87,7 @@ function App() {
         </ol>
       </section>
       <button
-        className="fixed bottom-2.5 right-2.5 rounded-full bg-amber-500 p-2 cursor-pointer"
+        className={`fixed bottom-2.5 right-2.5 rounded-full p-2 cursor-pointer ${theme === "light" ? "bg-amber-500" : "bg-amber-800 text-white"}`}
         onClick={() => {
           // setUsername("");
           // localStorage.removeItem("user");
