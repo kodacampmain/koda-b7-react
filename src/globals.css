@@ -25,6 +25,10 @@
   input[type="text"] {
     @apply font-soul;
   }
+  input::-ms-reveal,
+  input::-ms-clear {
+    display: none;
+  }
 }
 
 @layer components {
@@ -43,6 +47,19 @@
 
 @utility borderstd-* {
   border: 2px solid --value(--color-*);
+}
+
+@utility animate-toast {
+  animation: toast-timer 1s normal;
+}
+
+@keyframes toast-timer {
+  0% {
+    width: 100%;
+  }
+  100% {
+    width: 0%;
+  }
 }
 
 @custom-variant inside-input {

@@ -2,9 +2,11 @@ import { useState, useEffect } from "react";
 
 import Kelas from "../components/Kelas.jsx";
 import Header from "../components/Header.jsx";
-import Nav from "../components/Nav.jsx";
+// import Nav from "../components/Nav.jsx";
+import { useNavigate } from "react-router";
 
 function App() {
+  const navigate = useNavigate();
   const [counter, setCounter] = useState(0);
   const [users, setUsers] = useState([]);
   const incCounter = () => {
@@ -44,11 +46,20 @@ function App() {
   useEffect(() => {
     console.log("effect counter update");
   }, [counter]);
+  const [username, setUsername] = useState(() => {
+    return localStorage.getItem("user");
+  });
+  useEffect(() => {
+    if (!username) {
+      navigate("/auth", { replace: true });
+      return;
+    }
+  }, [username, navigate]);
   return (
     <main>
       {/* <Nav /> */}
       <section>
-        <Header name={"Koda"} />
+        <Header name={username} />
         <p>Komponen Fungsi</p>
         <button className="border-2 border-black border-solid p-2 bg-gray-100 cursor-pointer" onClick={incCounter}>
           Counter: {counter}
@@ -70,6 +81,15 @@ function App() {
           )}
         </ol>
       </section>
+      <button
+        className="fixed bottom-2.5 right-2.5 rounded-full bg-amber-500 p-2 cursor-pointer"
+        onClick={() => {
+          setUsername("");
+          localStorage.removeItem("user");
+        }}
+      >
+        Logout
+      </button>
     </main>
   );
 }
