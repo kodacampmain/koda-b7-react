@@ -1,8 +1,11 @@
 import { useNavigate } from "react-router";
 import { useState } from "react";
 
+import useLocalStorage from "../hooks/useLocalStorage";
+
 function Auth() {
   const navigate = useNavigate();
+  const [, setUsername] = useLocalStorage("user", "");
   const [show, setShow] = useState(false);
   const [showToast, setShowToast] = useState(false);
   // const [email, setEmail] = useState("");
@@ -39,7 +42,8 @@ function Auth() {
       setShowToast(true);
       return;
     }
-    localStorage.setItem("user", form.email);
+    // localStorage.setItem("user", form.email);
+    setUsername(form.email);
     navigate("/");
   };
   const changeHandler = (e) => {

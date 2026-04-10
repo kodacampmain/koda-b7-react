@@ -1,12 +1,15 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router";
 
 import Kelas from "../components/Kelas.jsx";
 import Header from "../components/Header.jsx";
 // import Nav from "../components/Nav.jsx";
-import { useNavigate } from "react-router";
+import useLocalStorage from "../hooks/useLocalStorage.js";
 
 function App() {
   const navigate = useNavigate();
+  const [username, , removeUsername] = useLocalStorage("user", "");
+  // const [isLoggedin, setIsLoggedIn] = useLocalStorage("login-status", false);
   const [counter, setCounter] = useState(0);
   const [users, setUsers] = useState([]);
   const incCounter = () => {
@@ -46,9 +49,9 @@ function App() {
   useEffect(() => {
     console.log("effect counter update");
   }, [counter]);
-  const [username, setUsername] = useState(() => {
-    return localStorage.getItem("user");
-  });
+  // const [username, setUsername] = useState(() => {
+  //   return localStorage.getItem("user");
+  // });
   useEffect(() => {
     if (!username) {
       navigate("/auth", { replace: true });
@@ -84,8 +87,9 @@ function App() {
       <button
         className="fixed bottom-2.5 right-2.5 rounded-full bg-amber-500 p-2 cursor-pointer"
         onClick={() => {
-          setUsername("");
-          localStorage.removeItem("user");
+          // setUsername("");
+          // localStorage.removeItem("user");
+          removeUsername();
         }}
       >
         Logout
