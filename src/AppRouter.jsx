@@ -8,6 +8,7 @@ import Gallery from "./pages/Gallery.jsx";
 import Nav from "./components/Nav.jsx";
 import PokemonDetail from "./pages/PokemonDetail.jsx";
 import Cashier from "./pages/Cashier.jsx";
+import Todos from "./pages/Todos.jsx";
 
 function LayoutWithNav() {
   return (
@@ -33,6 +34,7 @@ function AppRouter() {
         <Route path="form" element={<Form />} />
         <Route path="gallery" element={<Gallery />} />
         <Route path="cashier" element={<Cashier />} />
+        <Route path="todos" element={<Todos />} />
       </Route>
     </Routes>
   );

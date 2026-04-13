@@ -48,11 +48,20 @@ function Nav() {
       <button onClick={() => themeCtx.toggleTheme()} className="borderstd-black cursor-pointer p-1">
         Change Theme
       </button>
-      <button onClick={() => themeDispatch({ type: "toggle" })} className="borderstd-black cursor-pointer p-1 ml-2">
+      <button onClick={() => themeDispatch(toggleActionCreator())} className="borderstd-black cursor-pointer p-1 ml-2">
         Ganti Tema
+      </button>
+      <button onClick={() => themeDispatch(toggleActionCreator())}>
+        {themeState.theme === "light" ? "terang" : "gelap"}
       </button>
     </nav>
   );
+}
+
+function toggleActionCreator() {
+  return {
+    type: "toggle",
+  };
 }
 
 export default Nav;
