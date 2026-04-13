@@ -1,12 +1,20 @@
-import Nav from "../components/Nav";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 
+import Nav from "../components/Nav";
 import Image5 from "../assets/img/5.jpeg";
 import Image6 from "../assets/img/6.jpeg";
 import Image7 from "../assets/img/7.jpeg";
 import Image8 from "../assets/img/8.jpeg";
 import Groot from "../assets/img/groot.jpg";
+import { rickMortyActions } from "../redux/slices/rickMorty.js";
 
 function Gallery() {
+  const dispatch = useDispatch();
+  const { getCharactersThunk } = rickMortyActions;
+  useEffect(() => {
+    dispatch(getCharactersThunk(2));
+  }, [dispatch, getCharactersThunk]);
   return (
     <>
       <Nav />
