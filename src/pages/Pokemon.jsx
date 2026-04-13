@@ -5,14 +5,14 @@ import Header from "../components/Header.jsx";
 import { getPokemonDataWithAbilities } from "../api/getPokemonData.js";
 import PokemonCard from "../components/PokemonCard.jsx";
 
-function Pokemon() {
+const Pokemon = () => {
   const [pokemons, setPokemons] = useState([]);
   const [searchParam, setSearchParam] = useSearchParams();
   const [isLoading, setIsLoading] = useState(false);
-  const [page, setPage] = useState(() => {
-    // const page = parseInt(searchParam.get("page"));
-    return parseInt(searchParam.get("page")) || 1;
-  });
+  // const [page, setPage] = useState(() => {
+  //   // const page = parseInt(searchParam.get("page"));
+  //   return parseInt(searchParam.get("page")) || 1;
+  // });
   // useEffect(() => {
   //   console.log("page change");
   // }, [searchParam.get("page")]);
@@ -20,6 +20,7 @@ function Pokemon() {
     (async function () {
       try {
         setIsLoading(true);
+        const page = getDataFromSearchParam(searchParam, "page", 1);
         const data = await getPokemonDataWithAbilities(page);
         setPokemons(data);
         setIsLoading(false);
@@ -27,7 +28,7 @@ function Pokemon() {
         console.log(error);
       }
     })();
-  }, [page]);
+  }, [searchParam.get("page")]);
   return (
     <main>
       {/* <Nav /> */}
@@ -40,12 +41,12 @@ function Pokemon() {
           : "Loading..."}
       </section>
       <section className="flex justify-center gap-2 [&_p]:cursor-pointer [&_p]:select-none [&_p]:hover:text-blue-500">
-        {page > 1 && (
+        {getDataFromSearchParam(searchParam, "page", 1) > 1 && (
           <p
             onClick={() => {
-              setPage((page) => page - 1);
+              // setPage((page) => page - 1);
               setSearchParam((searchParam) => {
-                const currentPage = parseInt(searchParam.get("page"));
+                const currentPage = getDataFromSearchParam(searchParam, "page", 1);
                 // console.log(currentPage);
                 searchParam.set("page", `${currentPage - 1}`);
                 return searchParam;
@@ -66,7 +67,7 @@ function Pokemon() {
                   setSearchParam({
                     page: num + 1,
                   });
-                  setPage(num + 1);
+                  // setPage(num + 1);
                 }}
               >
                 {num + 1}
@@ -76,9 +77,9 @@ function Pokemon() {
         </div>
         <p
           onClick={() => {
-            setPage((page) => page + 1);
+            // setPage((page) => page + 1);
             setSearchParam((searchParam) => {
-              const currentPage = parseInt(searchParam.get("page")) || 1;
+              const currentPage = getDataFromSearchParam(searchParam, "page", 1);
               // console.log(currentPage);
               searchParam.set("page", `${currentPage + 1}`);
               return searchParam;
@@ -90,6 +91,17 @@ function Pokemon() {
       </section>
     </main>
   );
-}
+};
+
+/**
+ * Get any param with initial value from search param
+ * @param {URLSearchParams} searchParam
+ * @param {string} key search param key used to get the value
+ * @param {any} initialValue returned data if getting searchparams resulted in falsy value
+ * @returns {any}
+ */
+const getDataFromSearchParam = (searchParam, key, initialValue) => {
+  return parseInt(searchParam.get(key)) || initialValue;
+};
 
 export default Pokemon;

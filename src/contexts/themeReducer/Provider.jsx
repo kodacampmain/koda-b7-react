@@ -3,6 +3,7 @@ import ThemeReducerContext from "./context.js";
 
 const initialState = {
   theme: "light",
+  greeting: "",
 };
 function ThemeReducerProvider({ children }) {
   const [state, dispatch] = useReducer((prevState, { type }) => {
@@ -11,6 +12,11 @@ function ThemeReducerProvider({ children }) {
         return {
           ...prevState,
           theme: prevState.theme === "light" ? "dark" : "light",
+        };
+      case "funcA":
+        return {
+          ...prevState,
+          greeting: "Hello World",
         };
       default:
         return prevState;

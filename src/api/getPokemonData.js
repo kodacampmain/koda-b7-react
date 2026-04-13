@@ -2,6 +2,7 @@ import fetchApi from "../utils/fetch.js";
 import env from "../utils/environment.js";
 
 export const getPokemonDataWithAbilities = async (page) => {
+    console.log(page)
     try {
         const limit = 20
         const pokemonData = await fetchApi(`${env.pokeApi}/pokemon?limit=${limit}&offset=${(page - 1) * limit}}`);

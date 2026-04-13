@@ -9,11 +9,15 @@ function ThemeProvider({ children }) {
       return "light";
     });
   };
+  const funcA = () => {
+    return "Hello World";
+  };
   return (
     <ThemeContext.Provider
       value={{
         theme,
         toggleTheme,
+        funcA,
       }}
     >
       {children}
